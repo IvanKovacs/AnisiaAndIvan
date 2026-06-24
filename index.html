@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анисия & Иван | Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --gold:#c8a96b;
+    --gold-light:#e8d7b0;
+    --ivory:#faf8f5;
+    --text:#4d4d4d;
+    --glass:rgba(255,255,255,.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:var(--ivory);color:var(--text);overflow-x:hidden;}
+section{padding:120px 10%;}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;}
+
+.hero{
+height:100vh;position:relative;display:flex;align-items:center;justify-content:center;
+text-align:center;color:white;overflow:hidden;
+}
+.hero::before{
+content:'';position:absolute;inset:0;
+background:
+linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
+url('https://avatars.mds.yandex.net/i?id=7e93f021643846e9ecd64178fe31b861_l-4449821-images-thumbs&n=13');
+background-size:cover;background-position:center;transform:scale(1.05);
+}
+.hero-content{position:relative;z-index:2;}
+.hero h1{font-size:110px;letter-spacing:3px;}
+.hero p{font-size:24px;margin:20px 0;}
+.date{color:var(--gold-light);font-size:30px;}
+.scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);animation:bounce 2s infinite;}
+@keyframes bounce{50%{transform:translate(-50%,10px);}}
+
+.title{text-align:center;font-size:60px;margin-bottom:60px;color:var(--gold);}
+.countdown{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;}
+.time-box{
+width:150px;height:150px;border-radius:30px;display:flex;flex-direction:column;
+justify-content:center;align-items:center;background:white;
+box-shadow:0 20px 50px rgba(0,0,0,.08);
+}
+.time-box span{font-size:50px;color:var(--gold);font-weight:600;}
+
+.story{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.story img{width:100%;border-radius:30px;box-shadow:0 20px 50px rgba(0,0,0,.12);}
+.story-card,.map-card{
+background:white;padding:50px;border-radius:30px;
+box-shadow:0 20px 50px rgba(0,0,0,.08);
+}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+.gallery img{width:100%;height:380px;object-fit:cover;border-radius:25px;transition:.5s;}
+.gallery img:hover{transform:scale(1.04);}
+
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;}
+.event{
+background:white;border-radius:25px;padding:40px;text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+.event h3{color:var(--gold);font-size:36px;}
+
+.map-card{text-align:center;}
+
+.btn{
+display:inline-block;margin-top:25px;padding:16px 36px;
+background:linear-gradient(135deg,#d7b87a,#b9924b);
+color:white;text-decoration:none;border-radius:50px;transition:.3s;
+}
+.btn:hover{transform:translateY(-3px);}
+
+footer{padding:100px 20px;text-align:center;background:#f5f1ea;}
+
+.fade{opacity:0;transform:translateY(50px);transition:1s;}
+.fade.show{opacity:1;transform:none;}
+
+.tips{max-width:900px;margin:auto;}
+.tip-item{
+background:white;border-radius:20px;margin-bottom:18px;overflow:hidden;
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+.tip-item summary{
+padding:24px 30px;cursor:pointer;font-size:18px;font-weight:500;
+list-style:none;position:relative;
+}
+.tip-item summary::-webkit-details-marker{display:none;}
+.tip-item summary::after{
+content:"+";position:absolute;right:30px;font-size:24px;color:var(--gold);
+}
+.tip-item[open] summary::after{content:"−";}
+.tip-content{padding:0 30px 25px;line-height:1.8;}
+
+@media(max-width:900px){
+.hero h1{font-size:65px;}
+.story{grid-template-columns:1fr;}
+.title{font-size:44px;}
+.time-box{width:120px;height:120px;}
+}
+
+.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9999;}
+.petal{position:absolute;top:-50px;animation:fall linear forwards;}
+@keyframes fall{
+0%{transform:translateY(-50px) rotate(0deg);opacity:1;}
+100%{transform:translateY(110vh) rotate(720deg);opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+<div class="hero-content">
+<h1>Анисия & Иван</h1>
+<p>Приглашают разделить самый важный день</p>
+<div class="date">09 августа 2026 • 14:00</div>
+</div>
+<div class="scroll">↓</div>
+</section>
+
+<section class="fade">
+<h2 class="title">До нашей свадьбы</h2>
+<div class="countdown" id="countdown"></div>
+</section>
+
+<section class="fade">
+<h2 class="title">Приглашение</h2>
+<div class="story">
+<img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80">
+<div class="story-card">
+<h3>Дорогие родные и близкие!</h3><br>
+<p>В нашей жизни наступает особенный день — день, когда мы станем одной семьёй.</p><br>
+<p>Мы будем счастливы разделить этот важный момент вместе с вами и приглашаем вас стать частью нашего свадебного торжества.</p><br>
+<p>Пусть этот день будет наполнен теплом, искренними улыбками, радостью и счастливыми воспоминаниями.</p><br>
+<p>С нетерпением ждём встречи с вами 09 августа 2026 года!</p>
+</div>
+</div>
+</section>
+
+<section class="fade">
+<h2 class="title">Галерея</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80">
+<img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80">
+<img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=80">
+</div>
+</section>
+
+<section class="fade">
+<h2 class="title">Программа дня</h2>
+<div class="timeline">
+<div class="event"><h3>13:40</h3><p>Сбор гостей</p></div>
+<div class="event"><h3>14:00</h3><p>Начало банкета</p></div>
+<div class="event"><h3>20:00</h3><p>Завершение банкета</p></div>
+</div>
+</section>
+
+<section class="fade">
+<h2 class="title">Место проведения</h2>
+<div class="map-card">
+<h3>Ресторан «Московский»</h3>
+<p>Нажмите кнопку ниже, чтобы открыть маршрут к месту проведения</p>
+<a href="https://yandex.ru/maps/-/CTQ7425i" target="_blank" class="btn">Открыть карту</a>
+</div>
+</section>
+
+<section class="fade">
+<h2 class="title">Подсказки по нашему празднику</h2>
+<div class="tips">
+<details class="tip-item"><summary>Дресс-код</summary><div class="tip-content">Мы будем рады видеть вас в праздничных нарядах спокойных и пастельных оттенков.</div></details>
+<details class="tip-item"><summary>Цветы</summary><div class="tip-content">Если вы захотите подарить нам цветы, будем рады любым сезонным композициям.</div></details>
+<details class="tip-item"><summary>Подарки</summary><div class="tip-content">Ваше присутствие — лучший подарок для нас. Если вы захотите поздравить нас материально, будем благодарны за вклад в нашу семейную мечту.</div></details>
+<details class="tip-item"><summary>Парковка</summary><div class="tip-content">Для гостей предусмотрена парковка рядом с местом проведения торжества.</div></details>
+<details class="tip-item"><summary>Контакты для уточняющих вопросов</summary><div class="tip-content">Иван: +7 (___) ___-__-__<br>Анисия: +7 (___) ___-__-__</div></details>
+</div>
+</section>
+
+<footer><h2>Ждем вас ❤️</h2></footer>
+
+<div class="petals"></div>
+
+<script>
+const weddingDate=new Date("2026-08-09T14:00:00").getTime();
+function updateCountdown(){
+const now=new Date().getTime();
+const distance=weddingDate-now;
+const days=Math.floor(distance/(1000*60*60*24));
+const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds=Math.floor((distance%(1000*60))/1000);
+document.getElementById('countdown').innerHTML=`
+<div class="time-box"><span>${days}</span>Дней</div>
+<div class="time-box"><span>${hours}</span>Часов</div>
+<div class="time-box"><span>${minutes}</span>Минут</div>
+<div class="time-box"><span>${seconds}</span>Секунд</div>`;
+}
+setInterval(updateCountdown,1000); updateCountdown();
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add('show');});
+});
+document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
+
+function createHeart(){
+const heart=document.createElement('div');
+heart.className='petal';
+heart.innerHTML='❤️';
+heart.style.left=Math.random()*window.innerWidth+'px';
+heart.style.fontSize=(14+Math.random()*18)+'px';
+heart.style.animationDuration=(7+Math.random()*8)+'s';
+document.querySelector('.petals').appendChild(heart);
+setTimeout(()=>heart.remove(),15000);
+}
+setInterval(createHeart,800);
+</script>
+</body>
+</html>
